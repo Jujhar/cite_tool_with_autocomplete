@@ -11,6 +11,11 @@ let state = 0;
 
 // add esc / undo
 
+// helper methods
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 const readline = require('readline');
 readline.emitKeypressEvents(process.stdin);
 process.stdin.setRawMode(true);
@@ -100,22 +105,19 @@ console.log('year ?');
 
 // Use different method here
 function step6(){
-  process.stdin.on('keypress', (str, key) => {
-    if (key.name === 'return') {
-      if (state === 5) {
-        console.log(page + " " + fname + ", " + lname
-          + " (" + year + ") " + book + "p. " + page
-          + ' "' + quote + '"');
-        state = 6;
-        process.exit();
-      }
-    } else {
-      if (state === 5) {
-        quote += key.name;
-      }
-    }
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
   });
-console.log('quote / text of citation (optional) ?');
+
+  rl.question('quote / text of citation (optional) ? ', (quote) => {
+    console.log("\n" + fname.capitalize() + ", " + lname.capitalize()
+      + " (" + year + ") " + book + " p." + page
+      + ' "' + quote + '"');
+
+    rl.close();
+    process.exit();
+  });
 }
 
 // Made by Rebare
