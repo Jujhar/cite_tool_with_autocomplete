@@ -103,7 +103,6 @@ function step5(){
 console.log('year ?');
 }
 
-// Use different method here
 function step6(){
   const rl = readline.createInterface({
     input: process.stdin,
