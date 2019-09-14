@@ -27,7 +27,11 @@ process.stdin.on('keypress', (str, key) => {
       step2();
       return;
     } else {
-      page += key.name;
+      if (key.name.length == 1) {
+        page += key.name;
+      } else if (key.name == 'space') {
+        page += ' ';
+      }
     }
   }
 });
@@ -43,7 +47,11 @@ function step2(){
           step3();
           return;
       } else {
-        fname += key.name;
+        if (key.name.length == 1) {
+          fname += key.name;
+        } else if (key.name == 'space') {
+          fname += ' ';
+        }
       }
     }
   });
@@ -62,7 +70,11 @@ function step3(){
       }
     } else {
       if (state === 2) {
-        lname += key.name;
+        if (key.name.length == 1) {
+          lname += key.name;
+        } else if (key.name == 'space') {
+          lname += ' ';
+        }
       }
     }
   });
@@ -79,7 +91,11 @@ function step4(){
       }
     } else {
       if (state === 3) {
-        book += key.name;
+        if (key.name.length == 1) {
+          book += key.name;
+        } else if (key.name == 'space') {
+          book += ' ';
+        }
       }
     }
   });
@@ -96,7 +112,11 @@ function step5(){
       }
     } else {
       if (state === 4) {
-        year += key.name;
+        if (key.name.length == 1) {
+          year += key.name;
+        } else if (key.name == 'space') {
+          year += ' ';
+        }
       }
     }
   });
@@ -110,7 +130,7 @@ function step6(){
   });
 
   rl.question('quote / text of citation (optional) ? ', (quote) => {
-    console.log("\n" + fname.capitalize() + ", " + lname.capitalize()
+    console.log("\n" + lname.capitalize() + ", " + fname.capitalize()
       + " (" + year + ") " + book + " p." + page
       + ' "' + quote + '"');
 
